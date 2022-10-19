@@ -97,11 +97,6 @@ h1, h2, h3, p {
     margin-left: 2rem;
   }
 }
-@media only screen and (min-width: 1024px) {
-  html {
-    font-size: 18px;
-  }
-}
 @media only screen and (min-width: 1440px) {
   html {
     font-size: 20px;
@@ -113,7 +108,7 @@ h1, h2, h3, p {
   }
 }
 .wrapper {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #E6E6E6;
   padding-block: 2rem;
 }
 .wrapper input, .wrapper button {
