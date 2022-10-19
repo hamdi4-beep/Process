@@ -1,0 +1,152 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  object-fit: cover;
+  aspect-ratio: 1;
+  user-select: none;
+}
+
+input, button {
+  display: block;
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+.user__wrapper {
+  margin-inline: auto;
+  width: min(35rem, 90%);
+}
+.user__profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.user__profile button {
+  display: block;
+}
+.user__info {
+  text-align: center;
+  margin-inline: auto;
+}
+.user__cover {
+  overflow: hidden;
+  height: 15rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  border-bottom-left-radius: 50px;
+}
+.user__cover img {
+  width: 100%;
+  height: 100%;
+}
+.user__img {
+  width: 8rem;
+  margin-top: -4rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.user__img::before, .user__img::after {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: -0.5rem;
+  border: 1px solid transparent;
+  border-radius: 50%;
+}
+.user__img::before {
+  border-color: white;
+}
+.user__img::after {
+  border-left-color: black;
+}
+
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+  .user__profile {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .user__profile button {
+    margin-top: 0.5em;
+  }
+  .user__info {
+    text-align: left;
+    margin-left: 2rem;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  html {
+    font-size: 20px;
+  }
+}
+@media only screen and (min-width: 2560px) {
+  html {
+    font-size: 25px;
+  }
+}
+.wrapper {
+  border-bottom: 1px solid black;
+  padding-block: 2rem;
+}
+.wrapper input, .wrapper button {
+  background-color: #E6E6E6;
+}
+.wrapper button {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.circle, .circle::after {
+  border-radius: 50%;
+}
+
+.spin::after {
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+
+.pause::after {
+  animation-play-state: paused;
+}
+
+@keyframes spin {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,42 @@
+@forward 'globals';
+
+.wrapper {
+    border-bottom: 1px solid black;
+    padding-block: 2rem;
+
+    input, button {
+        background-color: #E6E6E6;
+    }
+
+    button {
+        background-color: black;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+.circle {
+    
+    &, &::after {
+        border-radius: 50%;
+    }
+}
+
+.spin::after {
+    animation-name: spin;
+    animation-duration: 1000ms;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.pause::after {
+    animation-play-state: paused;
+}
+
+@keyframes spin {
+    from {
+        rotate: 0deg;
+    } to {
+        rotate: 360deg;
+    }
+}
