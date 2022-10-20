@@ -1,7 +1,7 @@
 @forward 'globals';
 
 .wrapper {
-    border-bottom: 1px solid #E6E6E6;
+    border-bottom: 1px solid black;
     padding-block: 2rem;
 
     input, button {
@@ -12,6 +12,29 @@
         background-color: black;
         color: white;
         cursor: pointer;
+        margin-bottom: 2rem;
+    }
+}
+
+.block {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    margin-top: -2.5rem;
+    margin-inline: auto;
+    margin-bottom: 1rem;
+    border: 1px solid black;
+
+    &::after, & {
+        border-radius: 50%;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        inset: 0;
+        background-color: white;
     }
 }
 
@@ -20,6 +43,11 @@
     &, &::after {
         border-radius: 50%;
     }
+}
+
+.toggle-theme, .toggle-theme img {
+    background-color: black;
+    filter: invert(1) hue-rotate(180deg);
 }
 
 .spin::after {

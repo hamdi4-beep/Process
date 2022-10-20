@@ -7,6 +7,14 @@ $bp-xlarge: '2560px';
 
 // media queries
 
+@media only screen and (max-width: 425px) {
+
+    input {
+        width: 100%;
+    }
+
+}
+
 @media only screen and (min-width: $bp-small) {
 
     html {
@@ -24,9 +32,22 @@ $bp-xlarge: '2560px';
             }
         }
 
+        &__cover {
+
+            img {
+                aspect-ratio: 2;
+            }
+        }
+
         &__info {
             text-align: left;
             margin-left: 2rem;
+        }
+
+        &__followers {
+            margin-right: auto;
+            padding-top: 1rem;
+            padding-left: 1rem;
         }
     }
 
