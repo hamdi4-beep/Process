@@ -38,13 +38,14 @@
         img {
             aspect-ratio: 1.5;
             object-position: center;
+            pointer-events: none;
         }
     }
 
     &__img {
         width: 8rem;
         margin-top: -4rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.2rem;
         position: relative;
 
         &::before, &::after {

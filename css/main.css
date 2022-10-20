@@ -63,11 +63,12 @@ h1, h2, h3, p {
 .user__cover img {
   aspect-ratio: 1.5;
   object-position: center;
+  pointer-events: none;
 }
 .user__img {
   width: 8rem;
   margin-top: -4rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   position: relative;
 }
 .user__img::before, .user__img::after {

@@ -6,6 +6,11 @@ const body = document.body
 
 const btn = document.querySelector('button')
 
+userCover.addEventListener('pointerdown', e => uploadImg(URL => {
+    const img = userCover.querySelector('img')
+    img.src = URL
+}))
+
 btn.addEventListener('pointerdown', e => {
     body.classList.toggle('toggle-theme')
 
@@ -29,3 +34,25 @@ input.addEventListener('change', ({ target }) => {
 
     input.value = ''
 })
+
+function uploadImg(addImg) {
+    const input = document.createElement('input')
+
+    input.type = 'file'
+    input.click()
+
+    console.log('Did I miss something?')
+
+    input.onchange = function(e) {
+        if (this.files[0]) {
+            const file = this.files[0]
+            const type = file.type
+
+            if (type.split('/')[0] !== 'image') return
+
+            addImg(URL.createObjectURL(file))
+        }
+    }
+
+    input.remove()
+}
