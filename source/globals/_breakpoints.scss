@@ -10,7 +10,9 @@ $bp-xlarge: '2560px';
 @media only screen and (max-width: 425px) {
 
     input {
-        width: 100%;
+        width: calc(100% - 2rem);
+        margin-inline: 1rem;
+        margin-bottom: 1rem;
     }
 
 }
@@ -33,6 +35,8 @@ $bp-xlarge: '2560px';
         }
 
         &__cover {
+            border-radius: 5px;
+            border-bottom-left-radius: 50px;
 
             img {
                 aspect-ratio: 2;
