@@ -55,10 +55,12 @@ h1, h2, h3, p {
 .user__cover {
   overflow: hidden;
   height: 15rem;
-  margin-top: img;
-  margin-top-aspect-ratio: 1.5;
-  margin-top-object-position: center;
-  margin-top-pointer-events: none;
+  margin-top: 1rem;
+}
+.user__cover img {
+  aspect-ratio: 1.5;
+  object-position: center;
+  pointer-events: none;
 }
 .user__img {
   width: 8rem;
