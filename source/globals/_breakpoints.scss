@@ -29,12 +29,22 @@ $bp-xlarge: '2560px';
             flex-direction: row;
             align-items: flex-start;
 
-            button {
-                margin-top: .5em;
+            .right-col {
+                flex: 1;
+                margin-top: 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-left: 1rem;
+
+                button, .user__followers {
+                    margin: 0;
+                }
             }
         }
 
         &__cover {
+            margin-top: 1rem;
             border-radius: 5px;
             border-bottom-left-radius: 50px;
 
@@ -46,12 +56,6 @@ $bp-xlarge: '2560px';
         &__info {
             text-align: left;
             margin-left: 2rem;
-        }
-
-        &__followers {
-            margin-right: auto;
-            padding-top: 1rem;
-            padding-left: 1rem;
         }
     }
 

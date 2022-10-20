@@ -11,10 +11,10 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 1rem;
+        text-align: center;
 
         button {
-            display: block;
-            margin-top: .5rem;
+            margin-top: 1.5rem;
         }
 
         span {
@@ -26,14 +26,10 @@
         text-align: center;
     }
 
-    &__followers {
-        padding-top: .5rem;
-    }
-
     &__cover {
         overflow: hidden;
         height: 15rem;
-        margin-top: .5rem;
+        margin-top: 
 
         img {
             aspect-ratio: 1.5;

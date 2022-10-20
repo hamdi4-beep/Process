@@ -41,10 +41,10 @@ h1, h2, h3, p {
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+  text-align: center;
 }
 .user__profile button {
-  display: block;
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
 }
 .user__profile span {
   font-weight: bold;
@@ -52,18 +52,13 @@ h1, h2, h3, p {
 .user__info {
   text-align: center;
 }
-.user__followers {
-  padding-top: 0.5rem;
-}
 .user__cover {
   overflow: hidden;
   height: 15rem;
-  margin-top: 0.5rem;
-}
-.user__cover img {
-  aspect-ratio: 1.5;
-  object-position: center;
-  pointer-events: none;
+  margin-top: img;
+  margin-top-aspect-ratio: 1.5;
+  margin-top-object-position: center;
+  margin-top-pointer-events: none;
 }
 .user__img {
   width: 8rem;
@@ -101,10 +96,19 @@ h1, h2, h3, p {
     flex-direction: row;
     align-items: flex-start;
   }
-  .user__profile button {
-    margin-top: 0.5em;
+  .user__profile .right-col {
+    flex: 1;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+  }
+  .user__profile .right-col button, .user__profile .right-col .user__followers {
+    margin: 0;
   }
   .user__cover {
+    margin-top: 1rem;
     border-radius: 5px;
     border-bottom-left-radius: 50px;
   }
@@ -114,11 +118,6 @@ h1, h2, h3, p {
   .user__info {
     text-align: left;
     margin-left: 2rem;
-  }
-  .user__followers {
-    margin-right: auto;
-    padding-top: 1rem;
-    padding-left: 1rem;
   }
 }
 @media only screen and (min-width: 1440px) {
