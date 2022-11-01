@@ -2,195 +2,97 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  margin: 0;
-  padding: 0;
+}
+
+input, button {
+  font: inherit;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  border-radius: 10px;
 }
 
 img {
   display: block;
   max-width: 100%;
   object-fit: cover;
-  aspect-ratio: 1;
-  user-select: none;
 }
 
-input, button {
-  display: block;
-  font: inherit;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  border: none;
-  outline: none;
+body {
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+  padding-block: 1em;
 }
 
-h1, h2, h3, p {
-  margin: 0;
+section {
+  max-width: 768px;
+  text-align: center;
 }
 
-.user__wrapper {
-  margin-inline: auto;
-  width: min(35rem, 100%);
-}
-.user__profile {
+.user-profile {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-wrap: wrap;
   gap: 1rem;
-  text-align: center;
+  margin-inline: auto;
+  justify-content: center;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #E6E6E6;
 }
-.user__profile button {
-  margin-top: 1.5rem;
-}
-.user__profile span {
-  font-weight: bold;
-}
-.user__info {
-  text-align: center;
-}
-.user__cover {
-  overflow: hidden;
-  height: 15rem;
-  margin-top: 1rem;
-}
-.user__cover img {
-  aspect-ratio: 1.5;
-  object-position: center;
-  pointer-events: none;
-}
-.user__img {
-  width: 8rem;
-  margin-top: -4rem;
-  margin-bottom: 1.2rem;
-  position: relative;
-}
-.user__img::before, .user__img::after {
-  content: "";
-  display: block;
-  position: absolute;
-  inset: -0.5rem;
-  border: 1px solid transparent;
+
+.user-img {
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
+  overflow: hidden;
 }
-.user__img::before {
-  border-color: white;
+.user-img img {
+  width: 100%;
+  height: 100%;
 }
-.user__img::after {
-  border-left-color: black;
+
+input {
+  background: #E6E6E6;
+}
+
+.imgs-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-block: 2em;
+}
+.imgs-container .img-wrapper {
+  flex-grow: 1;
+  height: 15rem;
+  overflow: hidden;
+}
+.imgs-container .img-wrapper img {
+  width: 100%;
+  height: 100%;
+}
+
+.layer {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-content: center;
+}
+.layer img {
+  aspect-ratio: 3;
 }
 
 @media only screen and (max-width: 425px) {
-  input {
-    width: calc(100% - 2rem);
-    margin-inline: 1rem;
-    margin-bottom: 1rem;
-  }
-}
-@media only screen and (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-  .user__profile {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  .user__profile .right-col {
-    flex: 1;
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 1rem;
-  }
-  .user__profile .right-col button, .user__profile .right-col .user__followers {
-    margin: 0;
-  }
-  .user__cover {
-    border-radius: 5px;
-    border-bottom-left-radius: 50px;
-  }
-  .user__cover img {
-    aspect-ratio: 2;
-  }
-  .user__info {
-    text-align: left;
-    margin-left: 2rem;
-  }
-}
-@media only screen and (min-width: 1440px) {
-  html {
-    font-size: 20px;
-  }
-}
-@media only screen and (min-width: 2560px) {
-  html {
-    font-size: 25px;
-  }
-}
-.wrapper {
-  border-bottom: 1px solid black;
-  padding-block: 2rem;
-}
-.wrapper input, .wrapper button {
-  background-color: #E6E6E6;
-}
-.wrapper button {
-  background-color: black;
-  color: white;
-  cursor: pointer;
-  margin-bottom: 2rem;
-}
-
-.block {
-  position: relative;
-  width: 5rem;
-  height: 5rem;
-  margin-top: -2.5rem;
-  margin-inline: auto;
-  margin-bottom: 1rem;
-  border: 1px solid black;
-}
-.block::after, .block {
-  border-radius: 50%;
-}
-.block::after {
-  content: "";
-  display: block;
-  position: absolute;
-  inset: 0;
-  background-color: white;
-}
-
-.circle, .circle::after {
-  border-radius: 50%;
-}
-
-.toggle-theme, .toggle-theme img {
-  background-color: black;
-  filter: invert(1) hue-rotate(180deg);
-}
-
-.spin::after {
-  animation-name: spin;
-  animation-duration: 1000ms;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-}
-
-.pause::after {
-  animation-play-state: paused;
-}
-
-@keyframes spin {
-  from {
-    rotate: 0deg;
-  }
-  to {
-    rotate: 360deg;
+  body {
+    place-content: flex-start;
+    justify-content: center;
+    padding-top: 2em;
   }
 }
 

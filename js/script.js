@@ -1,58 +1,58 @@
-const userCover = document.querySelector('.user__cover')
-const userImg = document.querySelector('.user__img')
+const main = document.querySelector('main')
+const userImg = document.querySelector('.user-img')
 const input = document.querySelector('input')
-
-const body = document.body
-
 const btn = document.querySelector('button')
 
-userCover.addEventListener('pointerdown', e => uploadImg(URL => {
-    const img = userCover.querySelector('img')
-    img.src = URL
-}))
-
-btn.addEventListener('pointerdown', e => {
-    body.classList.toggle('toggle-theme')
-
-    if (body.classList.contains('toggle-theme')) {
-        btn.textContent = 'Turn Off Dark Mode'
-    } else {
-        btn.textContent = 'Turn On Dark Mode'
-    }
+userImg.addEventListener('click', e => {
+    const img = userImg.querySelector('img')
+    showFullScreen(img)
 })
 
-userImg.addEventListener('pointerdown', e => userImg.classList.toggle('pause'))
+input.addEventListener('change', ({ currentTarget }) => addImg(currentTarget.value))
+input.addEventListener('blur', ({ currentTarget }) => currentTarget.value = '')
+btn.addEventListener('click', e => uploadImg(addImg))
 
-input.addEventListener('change', ({ target }) => {
-    const img = userCover.querySelector('img')
-    const value = target.value
-
-    if (!value) return
-
-    img.src = value
-    img.onerror = e => alert('The link is broken!')
-
-    input.value = ''
-})
-
-function uploadImg(addImg) {
+function uploadImg(callback) {
     const input = document.createElement('input')
 
     input.type = 'file'
     input.click()
 
-    console.log('Did I miss something?')
-
-    input.onchange = function(e) {
-        if (this.files[0]) {
-            const file = this.files[0]
+    input.onchange = ({ currentTarget: { files } }) => {
+        if (files[0]) {
+            const file = files[0]
             const type = file.type
 
             if (type.split('/')[0] !== 'image') return
 
-            addImg(URL.createObjectURL(file))
+            callback && callback(URL.createObjectURL(file))
         }
     }
 
     input.remove()
+}
+
+function addImg(url) {
+    const imgsContainer = document.querySelector('.imgs-container')
+    const div = document.createElement('div')
+    const img = new Image
+
+    div.onclick = e => showFullScreen(img)
+
+    div.className = 'img-wrapper'
+    img.src = url
+
+    div.append(img)
+    imgsContainer.append(div)
+}
+
+function showFullScreen(img) {
+    const layer = document.createElement('div')
+    const cloneImg = img.cloneNode()
+
+    layer.onclick = e => layer.remove()
+    layer.className = 'layer'
+
+    main.append(layer)
+    layer.append(cloneImg)
 }

@@ -5,43 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/main.css">
     <script src="./js/script.js" defer></script>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="user__wrapper">
-            <input type="text" placeholder="Aa" />
-            <i class="fas fa-moon"></i>
-
-            <div class="user__cover">
-                <img src="https://wallpapers.com/images/hd/aesthetic-art-pastel-scenery-xhndazrqqr4lnqta.jpg" alt="">
+    <main>
+        <div class="user-profile">
+            <div class="user-img">
+                <img src="https://avatars.githubusercontent.com/u/75071205?v=4" alt="">
             </div>
 
-            <div class="user__profile">
-                <div class="user__info">
-                    <div class="user__img circle spin pause">
-                        <img class="circle" src="https://avatars.githubusercontent.com/u/75071205?v=4" alt="">
-                    </div>
-
-                    <h3>Hamdi Kamel</h3>
-                    <p>@hamdi4-beep</p>
-                </div>
-
-                <div class="right-col">
-                    <div class="user__followers">
-                        <p><span>34K</span> Followers</p>
-                    </div>
-                    
-                    <button class="cta">Turn On Dark Mode</button>
-                </div>
+            <div class="user-info">
+                <h3>Hamdi Kamel</h3>
+                <p>@hamdi4-beep</p>
             </div>
         </div>
-    </div>
 
-    <div class="block"></div>
+        <section>
+            <input type="text" placeholder="Image URL" />
+            <button>Upload Image</button>
+            <div class="imgs-container"></div>
+        </section>
+    </main>
 </body>
 </html>
