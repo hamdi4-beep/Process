@@ -37,9 +37,8 @@ for (let i=0; i<imgs.length; i++) {
             })
         } else {
             const upperImg = document.querySelectorAll('.upper .img')[i-3]
+            upperImg.click()
         }
-
-        console.log(currentElem)
     })
 }
 
