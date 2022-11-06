@@ -1,11 +1,14 @@
 const mirrored = document.querySelector('.lower')
 const imgs = document.querySelectorAll('.img')
-const input = document.querySelector('input')
+const form = document.forms[0]
 
 let currentElem, currentMatched
 
-input.addEventListener('change', ({ currentTarget }) => {
-    const value = currentTarget.value
+form.addEventListener('submit', e => {
+    const input = form['image-url']
+    const value = input.value
+
+    console.log(currentElem, value)
 
     if (currentElem && value) {
         const img = currentElem.querySelector('img')
@@ -13,17 +16,15 @@ input.addEventListener('change', ({ currentTarget }) => {
 
         img.src = value
         matchedImg.src = img.src
-
-        currentTarget.value = ''
-
-        console.log('Run')
     }
+
+    e.preventDefault()
 })
 
 for (let i=0; i<imgs.length; i++) {
     const section = imgs[i].parentElement
 
-    imgs[i].onclick = ({ currentTarget }) => {
+    imgs[i].addEventListener('click', ({ currentTarget }) => {
         if (section != mirrored) {
             selectImg(currentTarget, (target, i) => {
                 const matchedTarget = mirrored.querySelectorAll('.img')[i]
@@ -36,9 +37,10 @@ for (let i=0; i<imgs.length; i++) {
             })
         } else {
             const upperImg = document.querySelectorAll('.upper .img')[i-3]
-            upperImg.click()
         }
-    }
+
+        console.log(currentElem)
+    })
 }
 
 function selectImg(elem, callback) {
