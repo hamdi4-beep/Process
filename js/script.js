@@ -8,8 +8,6 @@ form.addEventListener('submit', e => {
     const input = form['image-url']
     const value = input.value
 
-    console.log(currentElem, value)
-
     if (currentElem && value) {
         const img = currentElem.querySelector('img')
         const matchedImg = currentMatched.querySelector('img')
@@ -17,6 +15,8 @@ form.addEventListener('submit', e => {
         img.src = value
         matchedImg.src = img.src
     }
+
+    input.value = ''
 
     e.preventDefault()
 })
