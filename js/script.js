@@ -1,4 +1,4 @@
-const mirrored = document.querySelector('.mirror')
+const mirrored = document.querySelector('.lower')
 const imgs = document.querySelectorAll('.img')
 const input = document.querySelector('input')
 
@@ -13,16 +13,32 @@ input.addEventListener('change', ({ currentTarget }) => {
 
         img.src = value
         matchedImg.src = img.src
+
         currentTarget.value = ''
+
+        console.log('Run')
     }
 })
 
-for (const img of imgs) {
-    img.addEventListener('pointerdown', ({ currentTarget }) => {
-        selectImg(currentTarget, (elem, i) => {
-            if (elem.classList.contains('target')) currentElem = elem
-        })
-    })
+for (let i=0; i<imgs.length; i++) {
+    const section = imgs[i].parentElement
+
+    imgs[i].onclick = ({ currentTarget }) => {
+        if (section != mirrored) {
+            selectImg(currentTarget, (target, i) => {
+                const matchedTarget = mirrored.querySelectorAll('.img')[i]
+    
+                currentElem = target
+                currentMatched = matchedTarget
+    
+                currentElem.classList.toggle('target')
+                currentMatched.classList.toggle('matched')
+            })
+        } else {
+            const upperImg = document.querySelectorAll('.upper .img')[i-3]
+            upperImg.click()
+        }
+    }
 }
 
 function selectImg(elem, callback) {
@@ -30,11 +46,6 @@ function selectImg(elem, callback) {
         const matched = mirrored.querySelectorAll('.img')[i]
 
         if (elem == img) {
-            elem.classList.toggle('target')
-            matched && matched.classList.toggle('matched')
-
-            currentMatched = matched
-
             callback(elem, i)
         } else {
             matched && matched.classList.remove('matched')
