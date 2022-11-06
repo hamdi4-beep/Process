@@ -1,15 +1,6 @@
 @forward 'globals';
 @use 'sass:map';
 
-$img-urls: (
-    1: 'https://i.pinimg.com/736x/4f/66/8d/4f668dba89d1bd9ba46ca51c6a745bb0.jpg',
-    2: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjzNeEMp4EU1ZyUIKxxUeXB8xSU6eUGxDaggFmd1Y7LftDJyYQVBtQLKD5E7pYJtxs63BIhvemBbNZCWGl2PtlLXgrLf6XV5dC9fAA3x4xYoBiVyMxjaCqVtlgy4J9n-4ypKYoFss4jMKt9ggmPeK563YcNn8oBhaEzybjqfP4A0hceWrQ1u7OMAANlUw/s2532/aesthetic-ios-16-wallpaper.jpg',
-    3: 'https://wallpaperaccess.com/full/154969.jpg',
-    4: 'https://i.pinimg.com/originals/af/38/a4/af38a4a1083b639c6139cebf8aea88a9.jpg',
-    5: 'https://pbs.twimg.com/profile_banners/1082932469488328705/1667115358/1500x500',
-    6: 'https://i.pinimg.com/736x/33/7d/07/337d078b8e7e1d4788e4bac27adac573.jpg',
-);
-
 main {
     width: 100%;
     max-width: 48rem;
@@ -21,39 +12,52 @@ main {
         grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
         align-items: flex-end;
         gap: 1rem;
-        margin-top: 1em;
 
-        &:not(:last-of-type) {
-            padding-bottom: 2em;
+        &:first-of-type {
+            margin-top: 1em;
         }
 
-        @for $i from 1 through 6 {
-            $urls: map-get($map: $img-urls, $key: $i);
-
+        @for $i from 1 through 3 {
             .img:nth-child(3n + #{$i}) {
                 position: relative;
-                background-image: url($urls);
-                background-size: cover;
-                background-position: center;
-                height: #{$i * 10 + 'rem'};
-                transition: height 500ms ease;
+                height: #{$i * 5 + 'rem'};
+                transition: all 500ms ease;
 
-                &:not(:last-of-type):hover {
+                img {
+                    object-fit: cover;
+                    width: 100%;
                     height: 100%;
                 }
             }
         }
 
-        .target::after {
-            content: '';
-            display: block;
-            position: absolute;
-            inset: -.5rem;
-            border: 1px solid black;
+        .target, .matched {
+            position: relative;
+            height: 100% !important;
+
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                inset: -.5rem;
+                border: 1px solid black;
+                border-bottom: none;
+            }
         }
     }
 }
 
-.align {
-    align-items: flex-start;
+.mirror {
+    position: relative;
+    transform: rotateX(180deg);
+
+    .img {
+        pointer-events: none;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    html {
+        font-size: 20px;
+    }
 }

@@ -50,87 +50,65 @@ main section {
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   align-items: flex-end;
   gap: 1rem;
-  margin-top: 1em;
 }
-main section:not(:last-of-type) {
-  padding-bottom: 2em;
+main section:first-of-type {
+  margin-top: 1em;
 }
 main section .img:nth-child(3n+1) {
   position: relative;
-  background-image: url("https://i.pinimg.com/736x/4f/66/8d/4f668dba89d1bd9ba46ca51c6a745bb0.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 10rem;
-  transition: height 500ms ease;
+  height: 5rem;
+  transition: all 500ms ease;
 }
-main section .img:nth-child(3n+1):not(:last-of-type):hover {
+main section .img:nth-child(3n+1) img {
+  object-fit: cover;
+  width: 100%;
   height: 100%;
 }
 main section .img:nth-child(3n+2) {
   position: relative;
-  background-image: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjzNeEMp4EU1ZyUIKxxUeXB8xSU6eUGxDaggFmd1Y7LftDJyYQVBtQLKD5E7pYJtxs63BIhvemBbNZCWGl2PtlLXgrLf6XV5dC9fAA3x4xYoBiVyMxjaCqVtlgy4J9n-4ypKYoFss4jMKt9ggmPeK563YcNn8oBhaEzybjqfP4A0hceWrQ1u7OMAANlUw/s2532/aesthetic-ios-16-wallpaper.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 20rem;
-  transition: height 500ms ease;
+  height: 10rem;
+  transition: all 500ms ease;
 }
-main section .img:nth-child(3n+2):not(:last-of-type):hover {
+main section .img:nth-child(3n+2) img {
+  object-fit: cover;
+  width: 100%;
   height: 100%;
 }
 main section .img:nth-child(3n+3) {
   position: relative;
-  background-image: url("https://wallpaperaccess.com/full/154969.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 30rem;
-  transition: height 500ms ease;
+  height: 15rem;
+  transition: all 500ms ease;
 }
-main section .img:nth-child(3n+3):not(:last-of-type):hover {
+main section .img:nth-child(3n+3) img {
+  object-fit: cover;
+  width: 100%;
   height: 100%;
 }
-main section .img:nth-child(3n+4) {
+main section .target, main section .matched {
   position: relative;
-  background-image: url("https://i.pinimg.com/originals/af/38/a4/af38a4a1083b639c6139cebf8aea88a9.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 40rem;
-  transition: height 500ms ease;
+  height: 100% !important;
 }
-main section .img:nth-child(3n+4):not(:last-of-type):hover {
-  height: 100%;
-}
-main section .img:nth-child(3n+5) {
-  position: relative;
-  background-image: url("https://pbs.twimg.com/profile_banners/1082932469488328705/1667115358/1500x500");
-  background-size: cover;
-  background-position: center;
-  height: 50rem;
-  transition: height 500ms ease;
-}
-main section .img:nth-child(3n+5):not(:last-of-type):hover {
-  height: 100%;
-}
-main section .img:nth-child(3n+6) {
-  position: relative;
-  background-image: url("https://i.pinimg.com/736x/33/7d/07/337d078b8e7e1d4788e4bac27adac573.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 60rem;
-  transition: height 500ms ease;
-}
-main section .img:nth-child(3n+6):not(:last-of-type):hover {
-  height: 100%;
-}
-main section .target::after {
+main section .target::after, main section .matched::after {
   content: "";
   display: block;
   position: absolute;
   inset: -0.5rem;
   border: 1px solid black;
+  border-bottom: none;
 }
 
-.align {
-  align-items: flex-start;
+.mirror {
+  position: relative;
+  transform: rotateX(180deg);
+}
+.mirror .img {
+  pointer-events: none;
+}
+
+@media only screen and (min-width: 1440px) {
+  html {
+    font-size: 20px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
