@@ -8,9 +8,14 @@
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
 
 input, button {
+  background-color: #e6e6e6;
   font: inherit;
   padding: 0.5em 1em;
   outline: none;
@@ -21,79 +26,111 @@ input, button {
 img {
   display: block;
   max-width: 100%;
+  aspect-ratio: 1;
   object-fit: cover;
 }
 
-body {
-  display: grid;
-  place-content: center;
-  min-height: 100vh;
-  padding-block: 1em;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-section {
-  max-width: 768px;
+ul {
+  list-style-type: none;
+}
+
+main {
+  width: 100%;
+  max-width: 48rem;
   text-align: center;
 }
-
-.user-profile {
-  display: flex;
-  gap: 1rem;
-  margin-inline: auto;
-  justify-content: center;
-  margin-bottom: 1em;
-  padding-bottom: 1em;
-  border-bottom: 1px solid #E6E6E6;
-}
-
-.user-img {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-  overflow: hidden;
-}
-.user-img img {
-  width: 100%;
-  height: 100%;
-}
-
-input {
-  background: #E6E6E6;
-}
-
-.imgs-container {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  padding-block: 2em;
-}
-.imgs-container .img-wrapper {
-  flex-grow: 1;
-  height: 15rem;
-  overflow: hidden;
-}
-.imgs-container .img-wrapper img {
-  width: 100%;
-  height: 100%;
-}
-
-.layer {
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  inset: 0;
+main section {
+  position: relative;
   display: grid;
-  place-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  align-items: flex-end;
+  gap: 1rem;
+  margin-top: 1em;
 }
-.layer img {
-  aspect-ratio: 3;
+main section:not(:last-of-type) {
+  padding-bottom: 2em;
+}
+main section .img:nth-child(3n+1) {
+  position: relative;
+  background-image: url("https://i.pinimg.com/736x/4f/66/8d/4f668dba89d1bd9ba46ca51c6a745bb0.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 10rem;
+  transition: height 500ms ease;
+}
+main section .img:nth-child(3n+1):not(:last-of-type):hover {
+  height: 100%;
+}
+main section .img:nth-child(3n+2) {
+  position: relative;
+  background-image: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjzNeEMp4EU1ZyUIKxxUeXB8xSU6eUGxDaggFmd1Y7LftDJyYQVBtQLKD5E7pYJtxs63BIhvemBbNZCWGl2PtlLXgrLf6XV5dC9fAA3x4xYoBiVyMxjaCqVtlgy4J9n-4ypKYoFss4jMKt9ggmPeK563YcNn8oBhaEzybjqfP4A0hceWrQ1u7OMAANlUw/s2532/aesthetic-ios-16-wallpaper.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 20rem;
+  transition: height 500ms ease;
+}
+main section .img:nth-child(3n+2):not(:last-of-type):hover {
+  height: 100%;
+}
+main section .img:nth-child(3n+3) {
+  position: relative;
+  background-image: url("https://wallpaperaccess.com/full/154969.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 30rem;
+  transition: height 500ms ease;
+}
+main section .img:nth-child(3n+3):not(:last-of-type):hover {
+  height: 100%;
+}
+main section .img:nth-child(3n+4) {
+  position: relative;
+  background-image: url("https://i.pinimg.com/originals/af/38/a4/af38a4a1083b639c6139cebf8aea88a9.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 40rem;
+  transition: height 500ms ease;
+}
+main section .img:nth-child(3n+4):not(:last-of-type):hover {
+  height: 100%;
+}
+main section .img:nth-child(3n+5) {
+  position: relative;
+  background-image: url("https://pbs.twimg.com/profile_banners/1082932469488328705/1667115358/1500x500");
+  background-size: cover;
+  background-position: center;
+  height: 50rem;
+  transition: height 500ms ease;
+}
+main section .img:nth-child(3n+5):not(:last-of-type):hover {
+  height: 100%;
+}
+main section .img:nth-child(3n+6) {
+  position: relative;
+  background-image: url("https://i.pinimg.com/736x/33/7d/07/337d078b8e7e1d4788e4bac27adac573.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 60rem;
+  transition: height 500ms ease;
+}
+main section .img:nth-child(3n+6):not(:last-of-type):hover {
+  height: 100%;
+}
+main section .target::after {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: -0.5rem;
+  border: 1px solid black;
 }
 
-@media only screen and (max-width: 425px) {
-  body {
-    place-content: flex-start;
-    justify-content: center;
-    padding-top: 2em;
-  }
+.align {
+  align-items: flex-start;
 }
 
 /*# sourceMappingURL=main.css.map */
