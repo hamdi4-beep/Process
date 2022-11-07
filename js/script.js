@@ -8,23 +8,21 @@ form.addEventListener('submit', e => {
     const input = form['image-url']
     const value = input.value
 
-    if (currentElem && value) {
-        const img = currentElem.querySelector('img')
-        const matchedImg = currentMatched.querySelector('img')
-
-        img.src = value
-        matchedImg.src = img.src
-    }
+    if (currentElem && value) addImg(value)
 
     input.value = ''
 
     e.preventDefault()
 })
 
-for (let i=0; i<imgs.length; i++) {
+for (let i=0, n=0; i<imgs.length; i++) {
     const section = imgs[i].parentElement
 
-    imgs[i].addEventListener('click', ({ currentTarget }) => {
+    imgs[i].addEventListener('click', ({ target, currentTarget }) => {
+        const fas = currentTarget.querySelector('.fas')
+
+        if (fas && target == fas) uploadImg(addImg)
+
         if (section != mirrored) {
             selectImg(currentTarget, (target, i) => {
                 const matchedTarget = mirrored.querySelectorAll('.img')[i]
@@ -53,4 +51,32 @@ function selectImg(elem, callback) {
             img.classList.remove('target')
         }
     })
+}
+
+function uploadImg(addImg) {
+    const input = document.createElement('input')
+
+    input.type = 'file'
+    input.click()
+
+    input.onchange = e => {
+        if (input.files[0]) {
+            const file = input.files[0]
+            const type = file.type
+
+            if (type.split('/')[0] !== 'image') return
+
+            addImg(URL.createObjectURL(file))
+        }
+    }
+
+    input.remove()
+}
+
+function addImg(url) {
+    const img = currentElem.querySelector('img')
+    const matchedImg = currentMatched.querySelector('img')
+
+    img.src = url
+    matchedImg.src = img.src
 }
