@@ -1,5 +1,11 @@
-import $ from './process.js'
+import _ from './process.js'
 
-$('passing an argument to the callback method!').invoke(function(arg) {
-    this.log(arg)
+_('hamdi4-beep').invoke(function(){})
+
+_().invoke(username => {
+    const _self = _()
+
+    _self.log({
+        username
+    })
 })
