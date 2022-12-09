@@ -1,5 +1,11 @@
 import _ from './process.js'
 
-_(1).invoke(function(a, b, c) {
-    console.log(a, b, c)
+_('hamdi4-beep').invoke(function(){})
+
+_().invoke(username => {
+    const _self = _()
+
+    _self.log({
+        username
+    })
 })

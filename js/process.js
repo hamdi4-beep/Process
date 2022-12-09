@@ -21,9 +21,7 @@ const init = process(function(type, ...rest) {
 
 const _ = init({
     invoke(callback) {
-        let args = Array(...arguments).slice(1)
-        args = args.filter(arg => typeof arg !== 'undefined')
-        
+        let args = Array(...arguments).slice(1).filter(arg => typeof arg !== 'undefined')
         return callback.apply(this, args)
     },
 
