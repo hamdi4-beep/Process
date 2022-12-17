@@ -1,9 +1,7 @@
 _('h2')
-.invoke(h2 => {
-    const _h2 = _(h2)
-
+.invoke(function() {
     setInterval(() => {
-        _h2.addCSS({
+        this.addCSS({
             'background-color': 'black',
             color: 'white',
             toggle: true
@@ -19,7 +17,7 @@ _('.theme-list')
 
         _child.invoke(function() {
             const color = _child.getCSS('background-color')
-            
+
             _h1.addCSS({
                 color
             })
