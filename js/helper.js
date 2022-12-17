@@ -34,7 +34,7 @@
         },
 
         getCSS(props) {
-            const element = this.element
+            const element = this.element || this.prop
             const styles = getComputedStyle(element)
             const results = []
 
