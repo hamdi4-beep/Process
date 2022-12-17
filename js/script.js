@@ -1,17 +1,12 @@
 _('main')
-.invoke(function(main) {
-    const _events = _(['pointerover', 'pointerout'])
-
-    _events.invoke(([enter, leave]) => {
-        main.addEventListener(enter, e => {
+.invoke(main => {
+    main.addEventListener('pointerdown', e => {
+        const _child = _(e.target)
+        
+        _child.invoke(function() {
             this.addCSS({
-                color: 'purple'
-            })
-        })
-
-        main.addEventListener(leave, e => {
-            this.addCSS({
-                color: 'black'
+                color: 'purple',
+                toggle: true
             })
         })
     })

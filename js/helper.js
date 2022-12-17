@@ -5,18 +5,23 @@
 
     Process.prototype = {
         invoke(callback) {
-            const element = this.element
-            const prop = this.prop
-
-            return callback.call(this, element || prop)
+            const arg = this.element || this.prop
+            return callback.call(this, arg)
         },
 
         addCSS(props) {
             if (typeof props !== 'object' && !(this.element instanceof HTMLElement)) return
 
             for (const key in props) {
-                const element = this.element
-                const value = element.style[key]
+
+
+                // checks to see if either element or prop is a HTML element
+
+                const element = this.element ||
+                                this.prop instanceof HTMLElement &&
+                                this.prop
+
+                const value = element.style[key] // css property's value
 
 
                 // handles toggle functionality otherwise adds properties once
@@ -63,7 +68,7 @@
         // a method that logs the current element to the console
 
         log() {
-            console.log(this.element)
+            console.log(this.element || this.prop)
         }
     }
 
