@@ -1,11 +1,16 @@
-import _ from './process.js'
+_('body')
+.invoke(function(body) {
+    const _event = _('pointerdown', {
+        string: true
+    })
 
-_('hamdi4-beep').invoke(function(){})
-
-_().invoke(username => {
-    const _self = _()
-
-    _self.log({
-        username
+    _event.invoke(event => {
+        body.addEventListener(event, e => {
+            this.addCSS({
+                'background-color': 'black',
+                color: 'white',
+                toggle: true
+            }).log()
+        })
     })
 })
