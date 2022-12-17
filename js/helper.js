@@ -6,7 +6,9 @@
     Process.prototype = {
         invoke(callback) {
             const element = this.element
-            return callback.call(this, element)
+            const prop = this.prop
+
+            return callback.call(this, element || prop)
         },
 
         addCSS(props) {
@@ -72,7 +74,7 @@
 
 
             // checks to see if the string value can be used as a valid selector
-            // otherwise store whatever is passed as value in the element property
+            // otherwise store whatever is passed as value in the data property
 
             if (typeof value !== 'object' &&
                 typeof value !== 'function' &&
@@ -83,7 +85,12 @@
                     if (!selector) throw Error('No such element exists in the DOM')
                     return selector
                 }
-        })() || value
+        })() || (_self.prop = value)
+
+
+        // resets the element property if the value was not a valid selector
+
+        if (_self.prop) _self.element = null
 
         Object.freeze(this)
     }
