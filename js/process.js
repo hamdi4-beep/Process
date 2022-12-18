@@ -1,99 +1,106 @@
-// Process - JavaScript Library
-// version base-level
-// experimental prototype
-// modified on 12/15/2022
+(global => {
+    const Process = global._ = function(selector, context) {
+        return new Process.init(selector, context)
+    }
+
+    Process.prototype = {
+        invoke(callback) {
+            const arg = this.element || this.prop
+            return callback.call(this, arg)
+        },
+
+        addCSS(props) {
+            if (typeof props !== 'object' && !(this.element instanceof HTMLElement)) return
+
+            for (const key in props) {
 
 
-// sets up an init function that accept a list of object's properties
+                // checks to see if either element or prop is a HTML element
 
-const init = process(function(type, ...rest) {
-    if (typeof type === 'string') type = document.querySelector(type) || type
+                const element = this.element ||
+                                this.prop instanceof HTMLElement &&
+                                this.prop
+
+                const value = element.style[key] // css property's value
 
 
-    // modifies the object's behavior for methods that require it
+                // handles toggle functionality otherwise add properties once
 
-    const factory = this.constructor // a reference to the factory constructor
-    const proto = factory.prototype
-
-    
-    // merges a list of arguments with the method's
-
-    if ('invoke' in this) {
-        const key = 'invoke'
-
-        proto[key] = (fn => {
-            return function() {
-                const args = Array().slice.apply(arguments)
-                return fn.apply(this, args.concat(type, rest))
+                if (props.toggle) element.style[key] = value === '' ? props[key] : ''
+                else element.style[key] = props[key]
             }
-        })(this[key])
-    }
 
-    
-    // calls the method with the type argument set as its function context
+            return this
+        },
 
-    if ('addCSS' in this) {
-        const key = 'addCSS'
+        getCSS(props) {
+            const element = this.element || this.prop
+            const styles = getComputedStyle(element)
+            const results = []
 
-        proto[key] = (fn => {
-            return function() {
-                return fn.apply(type, arguments)
+            
+            // handles a single property case
+
+            if (typeof props === 'string') {
+                const prop = styles.getPropertyValue(props)
+                return prop
             }
-        })(this[key])
-    }
-
-    Object.freeze(this)
-})
 
 
-// populates the prototype object with a list of methods
+            // ignores non-arrays and non-HTML elements
 
-const _ = init({
-    invoke(callback) {
+            if (Array.isArray(props) || (element instanceof HTMLElement)) {
+                throw Error('expected an array of values')
+            }
 
 
-        // filters undefined arguments in case no explicit argument is passed
+            // stores a list of CSS values in the results array
 
-        const args = Array(...arguments).slice(1).filter(arg => typeof arg !== 'undefined')
-        return callback.apply(this, args)
-    },
+            for (const prop of props) {
+                const value = styles.getPropertyValue(prop)
+                results.push(value)
+            }
 
-    log(arg) {
-        console.log(arg)
-    },
+            return results
+        },
 
-    random(max) {
-        return Math.floor(Math.random() * max)
-    },
 
-    addCSS(cssProps) {
-        if (!(this instanceof HTMLElement) && !cssProps) return
-        for (const key in cssProps) this.style[key] = cssProps[key]
-        return this
-    },
+        // a method that logs the current element to the console
 
-    RGB(n = 3) {
-        const color = this.random(255)
-
-        if (n > 1) {
-            const ret = this.RGB(n - 1) + ', ' + color
-            return ret
-        }
-
-        return color
-    }
-})
-
-function process(factory) {
-    return object => {
-        factory.prototype = object
-        factory.prototype.constructor = factory
-
-        return function() {
-            const args = [].slice.apply(arguments)
-            return new factory(...args)
+        log() {
+            console.log(this.element || this.prop)
         }
     }
-}
+
+    Process.init = function(value, context) {
+        const _self = this
+
+        _self.element = (() => {
+
+
+            // checks to see if the string value can be used as a valid selector
+            // otherwise store whatever is passed as value in the prop property
+
+            if (typeof value !== 'object' &&
+                typeof value !== 'function' &&
+                typeof value !== 'number' &&
+                typeof value !== 'boolean' &&
+                !context?.string) {
+                    const selector = document.querySelector(value)
+                    if (!selector) throw Error('No such element exists in the DOM')
+                    return selector
+                }
+        })() || (_self.prop = value)
+
+
+        // resets the element property if the value was not a valid selector
+
+        if (_self.prop) _self.element = null
+
+        Object.freeze(this)
+    }
+
+    Process.init.prototype = Process.prototype
+})(window)
 
 export default _
