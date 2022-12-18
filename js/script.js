@@ -1,16 +1,22 @@
 import _ from './process.js'
 
 
+/*
+    the _ function either accepts a string that's used to query elements in the DOM or
+    keep a reference to any passed object or primitive, and returns an object that owns a list of "utility methods"
+*/
+
 // looks up DOM child with that string
 
 _('.theme-list')
 
 
-// the invoke method "invokes" a callback with its argument set in the _ function
+// the invoke method "invokes" a callback with its argument set through the _ function
 // parameter refers to the element in the DOM (theme-list)
 
 .invoke(container => {
     container.addEventListener('pointerdown', ({ target }) => {
+        const _h1 = _('h1')
         const _h2 = _('h2') // methods called through this variable will reflect on the first argument (h2 element)
         const _child = _(target)
 
@@ -19,6 +25,7 @@ _('.theme-list')
 
             // fetches CSS properties of the element that was passed to child variable
 
+            const width = _h1.getCSS('width')
             const color = _child.getCSS('background-color')
 
 
@@ -29,8 +36,8 @@ _('.theme-list')
             .addCSS({
                 position: 'relative',
                 left: '-50%',
-                transform: 'rotate(360deg) scale(.5)',
-                toggle: true // property that "toggles" the CSS properties if present on the object
+                width,
+                toggle: true
             })
             .addCSS({
                 'background-color': color,

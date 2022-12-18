@@ -5,7 +5,7 @@
 
     Process.prototype = {
         invoke(callback) {
-            const arg = this.element || this.prop
+            const arg = this.element
             return callback.call(this, arg)
         },
 
@@ -17,10 +17,7 @@
 
                 // checks to see if either element or prop is a HTML element
 
-                const element = this.element ||
-                                this.prop instanceof HTMLElement &&
-                                this.prop
-
+                const element = this.element
                 const value = element.style[key] // css property's value
 
 
@@ -34,7 +31,7 @@
         },
 
         getCSS(props) {
-            const element = this.element || this.prop
+            const element = this.element
             const styles = getComputedStyle(element)
             const results = []
 
@@ -49,7 +46,7 @@
 
             // ignores non-arrays and non-HTML elements
 
-            if (Array.isArray(props) || (element instanceof HTMLElement)) {
+            if (!Array.isArray(props) || !(element instanceof HTMLElement)) {
                 throw Error('expected an array of values')
             }
 
@@ -68,7 +65,7 @@
         // a method that logs the current element to the console
 
         log() {
-            console.log(this.element || this.prop)
+            console.log(this.element)
         }
     }
 
@@ -90,6 +87,8 @@
                     if (!selector) throw Error('No such element exists in the DOM')
                     return selector
                 }
+
+            if (value instanceof HTMLElement) return value
         })() || (_self.prop = value)
 
 
