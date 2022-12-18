@@ -5,7 +5,7 @@
 
     Process.prototype = {
         invoke(callback) {
-            const arg = this.element || this.value
+            const arg = this.element || this.state
             return callback.call(this, arg)
         },
 
@@ -13,10 +13,6 @@
             if (typeof props !== 'object' && !(this.element instanceof HTMLElement)) return
 
             for (const key in props) {
-
-
-                // checks to see if either element or prop is a HTML element
-
                 const element = this.element
                 const value = element.style[key] // css property's value
 
@@ -44,7 +40,7 @@
             }
 
 
-            // ignores non-arrays
+            // expects an array if it's more tha one property
 
             if (!Array.isArray(props)) {
                 throw Error('expected an array of values')
@@ -62,10 +58,10 @@
         },
 
 
-        // a method that logs the current element to the console
+        // a method that logs the current element or state property to the console
 
         log() {
-            console.log(this.element)
+            console.log(this.element || this.state)
         }
     }
 
@@ -76,7 +72,7 @@
 
 
             // checks to see if the string value can be used as a valid selector
-            // otherwise store whatever is passed as value in the value property
+            // otherwise assign whatever is passed to the state property
 
             if (typeof value !== 'object' &&
                 typeof value !== 'function' &&
@@ -88,13 +84,13 @@
                     return selector
                 }
 
-            if (value instanceof HTMLElement) return value
-        })() || (_self.value = value)
+            if (value instanceof HTMLElement) return value // returns HTML element if it's passed as an argument
+        })() || (_self.state = value)
 
 
         // resets the element property if the value was not a valid selector
 
-        if (_self.value) _self.element = null
+        if (_self.state) _self.element = null
 
         Object.freeze(this)
     }
