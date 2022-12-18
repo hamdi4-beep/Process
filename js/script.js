@@ -6,6 +6,7 @@ import _ from './process.js'
 _('.theme-list')
 
 
+// the invoke method "invokes" a callback with its argument set in the _ function
 // parameter refers to the element in the DOM (theme-list)
 
 .invoke(container => {
