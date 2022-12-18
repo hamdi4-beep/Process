@@ -37,6 +37,7 @@ body {
 }
 
 .text-container {
+  position: relative;
   display: table;
   text-align: center;
   font-size: 6vw;
@@ -45,6 +46,7 @@ body {
 .text-container h1, .text-container h2 {
   display: table-cell;
   position: relative;
+  left: 0;
   letter-spacing: 0.5rem;
   padding: 0.1em;
   transform: none;
@@ -75,30 +77,27 @@ body {
 .theme-list .color {
   width: 50px;
   height: 50px;
-  border: 1px solid black;
   border-radius: 50%;
 }
 
-.black {
-  background-color: black !important;
+.one {
+  background-color: #caa8f5 !important;
   color: white;
 }
-.black::after {
+.one::after {
   background-color: white !important;
 }
 
-.white {
-  background-color: white !important;
+.two {
+  background-color: #9984d4 !important;
 }
 
-.grey {
-  background-color: #E6E6E6 !important;
-  border-color: #E6E6E6 !important;
+.three {
+  background-color: #592e83 !important;
 }
 
-.red {
-  background-color: darkorange !important;
-  border-color: darkorange !important;
+.four {
+  background-color: #230c33 !important;
 }
 
 /*# sourceMappingURL=main.css.map */
