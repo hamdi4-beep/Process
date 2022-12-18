@@ -5,7 +5,7 @@
 
     Process.prototype = {
         invoke(callback) {
-            const arg = this.element
+            const arg = this.element || this.value
             return callback.call(this, arg)
         },
 
@@ -44,9 +44,9 @@
             }
 
 
-            // ignores non-arrays and non-HTML elements
+            // ignores non-arrays
 
-            if (!Array.isArray(props) || !(element instanceof HTMLElement)) {
+            if (!Array.isArray(props)) {
                 throw Error('expected an array of values')
             }
 
@@ -76,7 +76,7 @@
 
 
             // checks to see if the string value can be used as a valid selector
-            // otherwise store whatever is passed as value in the prop property
+            // otherwise store whatever is passed as value in the value property
 
             if (typeof value !== 'object' &&
                 typeof value !== 'function' &&
@@ -89,12 +89,12 @@
                 }
 
             if (value instanceof HTMLElement) return value
-        })() || (_self.prop = value)
+        })() || (_self.value = value)
 
 
         // resets the element property if the value was not a valid selector
 
-        if (_self.prop) _self.element = null
+        if (_self.value) _self.element = null
 
         Object.freeze(this)
     }
