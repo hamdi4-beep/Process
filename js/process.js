@@ -1,5 +1,9 @@
 (global => {
-    const Process = global._ = function(selector, context) {
+    const Process = global._ = (selector, context) => {
+        context = {
+            selector: true // looks for a selector by default
+        }
+
         return new Process.init(selector, context)
     }
 
@@ -10,14 +14,14 @@
         },
 
         addCSS(props) {
-            if (typeof props !== 'object' && !(this.element instanceof HTMLElement)) return
+            if (typeof props !== 'object') return
 
             for (const key in props) {
                 const element = this.element
                 const value = element.style[key] // css property's value
 
 
-                // handles toggle functionality otherwise add properties once
+                // handles toggle functionality otherwise only add properties once
 
                 if (props.toggle) element.style[key] = value === '' ? props[key] : ''
                 else element.style[key] = props[key]
@@ -40,7 +44,7 @@
             }
 
 
-            // expects an array if it's more tha one property
+            // expects an array if it's more than a single property
 
             if (!Array.isArray(props)) {
                 throw Error('expected an array of values')
@@ -72,23 +76,19 @@
 
 
             // checks to see if the string value can be used as a valid selector
-            // otherwise assign whatever is passed to the state property
+            // otherwise assign value to the state property
 
-            if (typeof value !== 'object' &&
-                typeof value !== 'function' &&
-                typeof value !== 'number' &&
-                typeof value !== 'boolean' &&
-                !context?.string) {
+            if (typeof value === 'string' && context.selector) {
                     const selector = document.querySelector(value)
                     if (!selector) throw Error('No such element exists in the DOM')
                     return selector
                 }
 
-            if (value instanceof HTMLElement) return value // returns HTML element if it's passed as an argument
+            if (value instanceof HTMLElement) return value // returns the HTML element if it's passed as an argument
         })() || (_self.state = value)
 
 
-        // resets the element property if the value was not a valid selector
+        // resets the element property if value is not a string or not used to fetch DOM
 
         if (_self.state) _self.element = null
 
