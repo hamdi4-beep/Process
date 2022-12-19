@@ -79,18 +79,21 @@
             // otherwise assign value to the state property
 
             if (typeof value === 'string' && context.selector) {
-                    const selector = document.querySelector(value)
-                    if (!selector) throw Error('No such element exists in the DOM')
-                    return selector
-                }
-
-            if (value instanceof HTMLElement) return value // returns the HTML element if it's passed as an argument
-        })() || (_self.state = value)
+                const selector = document.querySelector(value)
+                if (!selector) throw Error('No such element exists in the DOM tree')
+                return selector
+            }
 
 
-        // resets the element property if value is not a string or not used to fetch DOM
+            // returns the HTML object instead if it's passed as an argument
 
-        if (_self.state) _self.element = null
+            if (value instanceof HTMLElement) return value
+        })()
+
+
+        // assigns any value that's not a DOM element to the state property
+
+        if (!_self.element) _self.state = value
 
         Object.freeze(this)
     }
